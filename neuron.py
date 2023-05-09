@@ -39,24 +39,20 @@ class NeuralNetwork:
             new_outputs = []
             for neuron in layer:
                 neuron_output = neuron.calculate(outputs)
+                neuron.last_inputs = outputs  # Aggiorna last_inputs per il neurone corrente
                 new_outputs.append(neuron_output)
             outputs = new_outputs
 
         self.output = outputs
-
-        # Aggiorna l'attributo last_inputs per tutti i neuroni
-        for layer in self.neural_network:
-            for neuron in layer:
-                neuron.last_inputs = inputs
-
 
     def get_output(self):
         return self.output
 
 class Neuron:
     def __init__(self, num_inputs):
-        self.weights = [random.uniform(-1, 1) for _ in range(num_inputs)]
-        self.bias = random.uniform(-1, 1)
+        self.weights = [random.uniform(-1, 1) for _ in range(num_inputs)]  # Utilizza random.uniform per pesi in float
+        self.bias = random.uniform(-1, 1)  # Utilizza random.uniform per bias in float
+
 
     def calculate(self, inputs):
         weighted_sum = sum(weight * input_val for weight, input_val in zip(self.weights, inputs))

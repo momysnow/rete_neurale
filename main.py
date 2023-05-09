@@ -1,6 +1,7 @@
 import argparse
 import numpy as np
 import csv
+import pickle
 from neuron import NeuralNetwork
 
 def parse_args():
@@ -12,13 +13,15 @@ def parse_args():
     parser.add_argument('--dataset', type=str, default='dataset.csv', help='Path to the dataset CSV file')
     parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
     parser.add_argument('--learning_rate', type=float, default=0.1, help='Learning rate for training')
+    parser.add_argument('--save_model', action='store_true', help='Save the trained model')
+    parser.add_argument('--model_file', type=str, default='model.pkl', help='File path to save the trained model')
     return parser.parse_args()
 
 def load_dataset(file_path):
     dataset = []
     with open(file_path, 'r') as file:
         reader = csv.reader(file)
-        next(reader)  # Ignora la prima riga (etichette delle colonne)
+        next(reader)  # Ignore the first row (column labels)
         for row in reader:
             inputs = list(map(float, row[:-1]))
             output = float(row[-1])
@@ -26,12 +29,16 @@ def load_dataset(file_path):
     return dataset
 
 def train(neural_network, dataset, epochs, learning_rate):
-    for _ in range(epochs):
+    for epoch in range(epochs):
+        total_error = 0.0
         for inputs, target in dataset:
             neural_network.calculate(inputs)
             output = neural_network.get_output()[0]
             error = target - output
             neural_network.backpropagate(error, learning_rate)
+            total_error += abs(error)
+        avg_error = total_error / len(dataset)
+        print(f'Epoch {epoch+1}/{epochs}, Average Error: {avg_error}')
 
 def main():
     args = parse_args()
@@ -48,6 +55,11 @@ def main():
     print('Input:', inputs)
     neural_network.calculate(inputs)
     print('Output:', neural_network.get_output())
+
+    if args.save_model:
+        with open(args.model_file, 'wb') as file:
+            pickle.dump(neural_network, file)
+        print(f'Model saved to {args.model_file}')
 
 if __name__ == '__main__':
     main()
