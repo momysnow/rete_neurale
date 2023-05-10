@@ -1,74 +1,43 @@
-# Documentazione del progetto "Neural Network Trainer"
-Il progetto "Neural Network Trainer" è un'applicazione che permette di addestrare una rete neurale utilizzando un dataset e successivamente calcolare l'output corrispondente per un dato set di input.
+# Neural Network Trainer
+Benvenuto al mio progetto di rete neurale! Questo progetto utilizza una rete neurale per eseguire calcoli speciali. Una rete neurale è come un piccolo cervello artificiale che può prendere decisioni e risolvere problemi utilizzando matematica e codice.
 
-## Requisiti
-- Python 3.x
+## Documentazione semplificata
+La classe "NeuralNetwork" rappresenta la nostra rete neurale. Quando creiamo una rete neurale, specifichiamo quanti "neuroni di input" e "neuroni di output" vogliamo. I neuroni di input raccolgono informazioni dall'esterno, mentre i neuroni di output comunicano il risultato al mondo esterno.
 
-- Librerie Python: numpy, argparse
+Abbiamo anche "neuroni nascosti" che sono come stanze segrete nel cervello. Questi neuroni nascosti ci aiutano a elaborare le informazioni in modo più intelligente. Possiamo decidere quanti neuroni nascosti e quanti livelli nascosti vogliamo nella nostra rete neurale.
 
-## Installazione
-1. Clonare il repository del progetto:
-	```` bash
-	git clone <URL del repository>
-	````
-	
-2. Creare un ambiente virtuale e attivarlo:
-	```` bash
-	python3 -m venv env
-	source env/bin/activate
-	````
+La classe "Neuron" rappresenta un singolo neurone nella rete neurale. Ogni neurone ha dei "pesi" e un "bias". I pesi determinano l'importanza delle informazioni di input, mentre il bias rappresenta una preferenza personale del neurone. I pesi e il bias aiutano il neurone a prendere decisioni basate sui dati di input.
 
-3. Installare le dipendenze:
-	```` bash
-	pip install -r requirements.txt
-	```` 
-	
-## Utilizzo
-Il programma principale si trova nel file '**main.py**'. Puoi eseguirlo da riga di comando specificando diversi argomenti:
+Il metodo "calculate()" della classe "NeuralNetwork" calcola l'output della rete neurale. Prendiamo i valori di input, li passiamo attraverso i neuroni e otteniamo un risultato finale. È come risolvere un puzzle matematico!
 
-```` bash
-python main.py --num_inputs <num_inputs> --num_outputs <num_outputs> --num_hidden <num_hidden> --num_layers <num_layers> --dataset <dataset_file> --epochs <num_epochs> --learning_rate <learning_rate>
-```` 
+Il metodo "get_output()" restituisce l'output calcolato dalla rete neurale. Possiamo usarlo per ottenere il risultato dei nostri calcoli o per prendere decisioni basate sui dati elaborati dalla rete neurale.
 
-- **'--num_inputs'**: il numero di neuroni di input della rete neurale (valore predefinito: 2)
-- **'--num_outputs'**: il numero di neuroni di output della rete neurale (valore predefinito: 1)
-- **'--num_hidden'**: il numero di neuroni nel livello nascosto della rete neurale (valore predefinito: 2)
-- **'--num_layers'**: il numero di livelli nascosti nella rete neurale (valore predefinito: 1)
-- **'--dataset'**: il percorso al file CSV contenente il dataset di addestramento (valore predefinito: dataset.csv)
-- **'--epochs'**: il numero di epoche di addestramento (valore predefinito: 100)
-- **'--learning_rate'**: il tasso di apprendimento per l'addestramento (valore predefinito: 0.1)
+In sintesi, il mio progetto su GitHub utilizza una rete neurale per eseguire calcoli speciali. Le reti neurali sono come cervelli artificiali che possono prendere decisioni e risolvere problemi. Spero che questa documentazione semplificata ti aiuti a capire meglio il progetto!
 
-## Dataset
-Il dataset di addestramento deve essere un file CSV valido. Ogni riga del file rappresenta un esempio di addestramento, con i valori di input seguiti dal valore di output desiderato.
+## Documentazione espansa
 
-## Addestramento
-Durante l'addestramento, la rete neurale utilizza l'algoritmo di discesa del gradiente con retropropagazione dell'errore per aggiornare i pesi in base all'errore commesso. Viene eseguito un numero specificato di epoche di addestramento utilizzando il dataset fornito.
+Ora che hai familiarità con i concetti di base, possiamo approfondire ulteriormente il funzionamento della rete neurale nel tuo progetto su GitHub.
 
-## Calcolo dell'output
-Dopo l'addestramento, è possibile calcolare l'output corrispondente a un dato set di input utilizzando la rete neurale addestrata.
+La classe "NeuralNetwork" rappresenta la struttura della rete neurale. Quando viene inizializzata, vengono specificati i seguenti parametri:
 
-## Esempio
-Di seguito è riportato un esempio di esecuzione del programma:
+- **'num_inputs'**: il numero di neuroni di input che accettano le informazioni iniziali.
+- **'num_outputs'**: il numero di neuroni di output che producono il risultato finale.
+- **'num_hidden'**: il numero di neuroni in ogni livello nascosto.
+- **'num_layers'**: il numero di livelli nascosti nella rete neurale.
+All'interno del metodo **'create_network()'**, la rete neurale viene costruita come una lista di liste. Iniziamo creando i livelli nascosti. Per ogni livello nascosto, creiamo una lista di neuroni, dove ogni neurone ha il numero di input specificato. In pratica, ciascun neurone nel livello nascosto riceve informazioni da tutti i neuroni del livello di input precedente. Successivamente, creiamo il livello di output, che è una lista di neuroni connessi a tutti i neuroni dell'ultimo livello nascosto. Questo collegamento completo consente alla rete neurale di imparare e risolvere compiti più complessi.
 
-```` bash
-python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --dataset dataset.csv --epochs 100 --learning_rate 0.1
-````
- 
-## Conclusioni
-Il progetto "Neural Network Trainer offre un'implementazione semplice ma funzionale di una rete neurale. Può essere utilizzato per addestrare reti neurali su dataset di piccole dimensioni e calcolare gli output corrispondenti per dati di input specifici.
+Il metodo **'calculate()'** prende in input un array di valori e calcola l'output della rete neurale. Per farlo, iteriamo attraverso i livelli della rete neurale. Per ogni livello, calcoliamo l'output dei neuroni nel livello corrente utilizzando il metodo **'calculate()'** della classe **'Neuron'**. L'output di ciascun neurone viene raccolto in una lista e utilizzato come input per il calcolo dei neuroni nel livello successivo. Alla fine, l'output dell'ultimo livello (livello di output) viene assegnato all'attributo '**output**' della classe.
 
-La modularità del codice consente di personalizzare facilmente il numero di neuroni di input, di output e nascosti, nonché il numero di livelli nascosti della rete neurale. Inoltre, è possibile specificare il file CSV del dataset di addestramento, il numero di epoche di addestramento e il tasso di apprendimento come argomenti da linea di comando.
+La classe "Neuron" rappresenta un singolo neurone all'interno della rete neurale. Ogni neurone ha i seguenti attributi:
 
-Si consiglia di esplorare ulteriormente il codice sorgente per comprendere meglio il funzionamento interno della classe NeuralNetwork e della classe Neuron, nonché l'implementazione dell'algoritmo di addestramento e del calcolo dell'output.
+- **'weights'**: una lista di pesi, uno per ciascun neurone di input. I pesi rappresentano l'importanza relativa dei valori di input per il neurone.
+- **'bias'**: un valore che indica la preferenza o l'inclinazione del neurone verso l'attivazione o l'inattivazione.
+Il metodo **'calculate()'** del neurone prende in input un array di valori e calcola l'output del neurone. Questo viene fatto calcolando la somma pesata dei valori di input moltiplicati per i rispettivi pesi. Il risultato viene poi sommato al bias del neurone. Il valore ottenuto rappresenta l'attivazione del neurone e viene restituito come output.
 
-Per ulteriori informazioni, fare riferimento alla documentazione delle librerie utilizzate, come numpy per la manipolazione di array multidimensionali e argparse per il parsing degli argomenti da linea di comando.
+In conclusione, la tua rete neurale nel progetto su GitHub utilizza una struttura di rete configurabile con un numero specificato di neuroni di input, neuroni di output, neuroni nascosti e livelli nascosti. Ogni neurone calcola il suo output basato sui pesi dei suoi input e sul bias associato. L'output della rete neurale viene calcolato iterando attraverso i livelli e calcolando l'output dei neuroni in ciascun livello. Questo processo di calcolo degli output della rete neurale ci permette di ottenere una risposta finale basata sugli input forniti.
 
-## Limitazioni
-È importante notare che questa implementazione è pensata per scopi didattici o per problemi semplici. In scenari più complessi o con dataset di grandi dimensioni, potrebbe essere necessario utilizzare librerie specializzate per il deep learning, come TensorFlow o PyTorch, che offrono funzionalità avanzate e ottimizzazioni per reti neurali complesse.
+Le reti neurali sono ampiamente utilizzate per una varietà di compiti, come il riconoscimento di immagini, la previsione del tempo, l'elaborazione del linguaggio naturale e molto altro ancora. Possono imparare dai dati attraverso un processo chiamato "addestramento", dove i pesi dei neuroni vengono regolati gradualmente per adattarsi ai dati di input e produrre risultati più accurati.
 
-Inoltre, il progetto attuale non include funzionalità come la regolarizzazione, la normalizzazione dei dati o la gestione di tipi di dato diversi. Queste sono considerazioni importanti da prendere in considerazione quando si lavora con reti neurali in contesti reali.
-## Contributi
-Sono benvenuti contributi per migliorare questo progetto. Se desideri contribuire, puoi aprire una pull request nel repository del progetto indicando le modifiche apportate e la motivazione dietro di esse.
+Nel tuo progetto, puoi sperimentare diversi parametri come il numero di neuroni di input, il numero di neuroni di output, il numero di neuroni nascosti e il numero di livelli nascosti per adattare la rete neurale alle specifiche esigenze del tuo problema. Puoi anche esplorare tecniche di addestramento come l'algoritmo di retropropagazione per migliorare le prestazioni della rete neurale.
 
-## Licenza
-Il progetto è concesso in licenza secondo i termini della licenza MIT. Fare riferimento al file LICENSE per ulteriori dettagli.
+Spero che questa documentazione dettagliata ti abbia dato una migliore comprensione di come la rete neurale nel tuo progetto su GitHub funzioni e come può essere personalizzata per adattarsi ai tuoi scopi. Se hai ulteriori domande, non esitare a chiedere!
