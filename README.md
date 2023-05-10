@@ -1,145 +1,84 @@
-# Documentazione del progetto "Neural Network Trainer"
-Il progetto "Neural Network Trainer" è un'applicazione che permette di addestrare una rete neurale utilizzando un dataset e successivamente calcolare l'output corrispondente per un dato set di input.
+# Neural Network Trainer
 
-## Requisiti
-- Python 3.x
-
-- Librerie Python: numpy, argparse
-
-## Installazione
-1. Clonare il repository del progetto:
-	```` bash
-	git clone <URL del repository>
-	````
-
-2. Creare un ambiente virtuale e attivarlo:
-	```` bash
-	python3 -m venv env
-	source env/bin/activate
-	````
-
-3. Installare le dipendenze:
-	```` bash
-	pip install -r requirements.txt
-	```` 
+Questo progetto è un addestratore di una semplice rete neurale. L'obiettivo è fornire una base per l'apprendimento automatico utilizzando una rete neurale con un numero configurabile di input, output e layer nascosti.
 
 ## Utilizzo
-Il programma principale si trova nel file '**main.py**'. Puoi eseguirlo da riga di comando specificando diversi argomenti:
 
-```` bash
-python main.py --num_inputs <num_inputs> --num_outputs <num_outputs> --num_hidden <num_hidden> --num_layers <num_layers> --dataset <dataset_file> --epochs <num_epochs> --learning_rate <learning_rate>
-```` 
+Segui i passaggi seguenti per utilizzare il progetto:
 
-- **'--num_inputs'**: il numero di neuroni di input della rete neurale (valore predefinito: 2)
-- **'--num_outputs'**: il numero di neuroni di output della rete neurale (valore predefinito: 1)
-- **'--num_hidden'**: il numero di neuroni nel livello nascosto della rete neurale (valore predefinito: 2)
-- **'--num_layers'**: il numero di livelli nascosti nella rete neurale (valore predefinito: 1)
-- **'--dataset'**: il percorso al file CSV contenente il dataset di addestramento (valore predefinito: dataset.csv)
-- **'--epochs'**: il numero di epoche di addestramento (valore predefinito: 100)
-- **'--learning_rate'**: il tasso di apprendimento per l'addestramento (valore predefinito: 0.1)
+1.  Assicurati di avere Python installato sul tuo sistema.
+    
+2.  Clona il repository o scarica i file del progetto.
+    
+3.  Installa le dipendenze eseguendo il comando seguente:
+    
+    `pip install -r requirements.txt` 
+    
+4.  Prepara il tuo dataset di addestramento:
+    
+    -   Crea un file CSV che contenga i dati di addestramento. Ogni riga del file rappresenta un esempio di input-output per la rete neurale. Assicurati di separare gli input dagli output con una virgola.
+        
+    -   Modifica il file `dataset.csv` esistente con i tuoi dati di addestramento o crea un nuovo file CSV e specifica il percorso nel parametro `--dataset` durante l'esecuzione del programma.
+        
+5.  Esegui il programma utilizzando il seguente comando:
+    
+    `python main.py --num_inputs <num_inputs> --num_outputs <num_outputs> --num_hidden <num_hidden> --num_layers <num_layers> --use_memory --dataset <dataset_path> --epochs <num_epochs> --learning_rate <learning_rate> --save_model --model_file <model_path>` 
+    
+    -   Sostituisci `<num_inputs>`, `<num_outputs>`, `<num_hidden>`, `<num_layers>`, `<dataset_path>`, `<num_epochs>`, `<learning_rate>`, `<model_path>` con i valori desiderati.
+        
+    -   L'opzione `--use_memory` è facoltativa e può essere inclusa per utilizzare neuroni con memoria.
+        
+    -   L'opzione `--save_model` è facoltativa e può essere inclusa per salvare il modello addestrato su un file.
+        
+6.  Durante l'esecuzione del programma, verranno visualizzati i risultati dell'addestramento, inclusi l'epoca corrente e l'errore medio.
+    
+7.  Alla fine dell'addestramento, verranno generati input casuali e verrà calcolato l'output corrispondente utilizzando il modello addestrato. L'input e l'output saranno visualizzati a schermo.
+    
+8.  Se hai incluso l'opzione `--save_model`, il modello addestrato verrà salvato nel file specificato.
+    
 
-## Dataset
-Il dataset di addestramento deve essere un file CSV valido. Ogni riga del file rappresenta un esempio di addestramento, con i valori di input seguiti dal valore di output desiderato.
+## Personalizzazioni
 
-## Addestramento
-Durante l'addestramento, la rete neurale utilizza l'algoritmo di discesa del gradiente con retropropagazione dell'errore per aggiornare i pesi in base all'errore commesso. Viene eseguito un numero specificato di epoche di addestramento utilizzando il dataset fornito.
+Puoi personalizzare il comportamento del programma modificando gli argomenti passati durante l'esecuzione o apportando modifiche al codice sorgente.
 
-## Calcolo dell'output
-Dopo l'addestramento, è possibile calcolare l'output corrispondente a un dato set di input utilizzando la rete neurale addestrata.
+-   Puoi regolare il numero di neuroni di input, output, layer nascosti e layer totali tramite gli argomenti `--num_inputs`, `--num_outputs`, `--num_hidden` e `--num_layers`.
+    
+-   Puoi abilitare l'uso dei neuroni con memoria utilizzando l'opzione `--use_memory`.
+    
+-   Puoi modificare il percorso del file CSV di addestramento utilizzando l'argomento `--dataset`.
 
-## Esempio
-Di seguito è riportato un esempio di esecuzione del programma:
+-   Puoi regolare il numero di epoche di addestramento utilizzando l'argomento `--epochs`.
+    
+-   Puoi specificare il tasso di apprendimento utilizzando l'argomento `--learning_rate`.
+    
+-   Puoi scegliere di salvare il modello addestrato su un file specifico utilizzando l'opzione `--save_model` e specificando il percorso del file con l'argomento `--model_file`.
+    
+-   Se desideri apportare modifiche al comportamento del programma, puoi modificare il codice sorgente nei file `main.py` e `neuron.py` per adattarlo alle tue esigenze.
+    
 
-```` bash
-python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --dataset dataset.csv --epochs 100 --learning_rate 0.1
-````
+## Esempi
+
+Ecco alcuni esempi di comandi che puoi utilizzare per eseguire il programma:
+
+-   Addestrare una rete neurale con 2 neuroni di input, 1 neurone di output, 2 neuroni nascosti, 1 layer nascosto, utilizzando neuroni con memoria e salvando il modello addestrato:
+    
+    `python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --use_memory --save_model` 
+    
+-   Addestrare una rete neurale utilizzando un file CSV diverso come dataset di addestramento:
+    
+    `python main.py --dataset my_dataset.csv` 
+    
+-   Addestrare una rete neurale per 200 epoche con un tasso di apprendimento di 0.01:
+    
+    `python main.py --epochs 200 --learning_rate 0.01` 
+    
+-   Addestrare una rete neurale e salvare il modello addestrato su un file specifico:
+    
+    `python main.py --save_model --model_file my_model.pkl` 
+    
 
 ## Conclusioni
-Il progetto "Neural Network Trainer offre un'implementazione semplice ma funzionale di una rete neurale. Può essere utilizzato per addestrare reti neurali su dataset di piccole dimensioni e calcolare gli output corrispondenti per dati di input specifici.
 
-La modularità del codice consente di personalizzare facilmente il numero di neuroni di input, di output e nascosti, nonché il numero di livelli nascosti della rete neurale. Inoltre, è possibile specificare il file CSV del dataset di addestramento, il numero di epoche di addestramento e il tasso di apprendimento come argomenti da linea di comando.
+Questo progetto ti offre una base per comprendere e sperimentare con le reti neurali. Puoi personalizzare il numero di neuroni, il dataset di addestramento, le epoche e il tasso di apprendimento per adattare la rete neurale ai tuoi dati e obiettivi specifici. Speriamo che questo progetto sia un punto di partenza utile per il tuo apprendimento delle reti neurali!
 
-Si consiglia di esplorare ulteriormente il codice sorgente per comprendere meglio il funzionamento interno della classe NeuralNetwork e della classe Neuron, nonché l'implementazione dell'algoritmo di addestramento e del calcolo dell'output.
-
-Per ulteriori informazioni, fare riferimento alla documentazione delle librerie utilizzate, come numpy per la manipolazione di array multidimensionali e argparse per il parsing degli argomenti da linea di comando.
-
-## Limitazioni
-È importante notare che questa implementazione è pensata per scopi didattici o per problemi semplici. In scenari più complessi o con dataset di grandi dimensioni, potrebbe essere necessario utilizzare librerie specializzate per il deep learning, come TensorFlow o PyTorch, che offrono funzionalità avanzate e ottimizzazioni per reti neurali complesse.
-
-Inoltre, il progetto attuale non include funzionalità come la regolarizzazione, la normalizzazione dei dati o la gestione di tipi di dato diversi. Queste sono considerazioni importanti da prendere in considerazione quando si lavora con reti neurali in contesti reali.
-## Contributi
-Sono benvenuti contributi per migliorare questo progetto. Se desideri contribuire, puoi aprire una pull request nel repository del progetto indicando le modifiche apportate e la motivazione dietro di esse.
-
-## Licenza
-Il progetto è concesso in licenza secondo i termini della licenza MIT. Fare riferimento al file LICENSE per ulteriori dettagli.
-
-
-
-## Documentazione - Salvataggio del Modello
-
-Lo script main.py consente di addestrare una rete neurale e salvarne il modello addestrato per un uso futuro. Di seguito sono riportati i passaggi per salvare il modello.
-
-Utilizzo dello script
-Esegui lo script main.py utilizzando il seguente comando:
-
-css
-Copy code
-python main.py --num_inputs <num_inputs> --num_outputs <num_outputs> --num_hidden <num_hidden> --num_layers <num_layers> --dataset <dataset_file> --epochs <num_epochs> --learning_rate <learning_rate> --save_model --model_file <model_file>
-Dove:
-
-<num_inputs>: Il numero di neuroni di input della rete neurale.
-<num_outputs>: Il numero di neuroni di output della rete neurale.
-<num_hidden>: Il numero di neuroni nel livello nascosto della rete neurale.
-<num_layers>: Il numero di livelli nascosti della rete neurale.
-<dataset_file>: Il percorso al file CSV contenente il dataset per l'addestramento.
-<num_epochs>: Il numero di epoche di addestramento.
-<learning_rate>: Il tasso di apprendimento per l'addestramento.
-<model_file>: Il percorso al file in cui salvare il modello addestrato.
-Salvataggio del Modello
-Per salvare il modello addestrato, utilizzare l'opzione --save_model durante l'esecuzione dello script. Assicurarsi di specificare anche l'argomento --model_file seguito dal percorso desiderato per il file di salvataggio.
-
-Esempio di comando per salvare il modello:
-
-css
-Copy code
-python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --dataset dataset.csv --epochs 100 --learning_rate 0.1 --save_model --model_file model.pkl
-Dopo aver eseguito lo script con successo, il modello addestrato verrà salvato nel file specificato tramite --model_file.
-
-Si prega di notare che il salvataggio del modello richiede l'installazione della libreria pickle.
-
-
-
-
-innanzitutto, è stato aggiunto un nuovo parametro al costruttore della classe NeuralNetwork, chiamato use_memory, che indica se la rete neurale deve utilizzare la memoria o meno. Di default, use_memory è impostato su False.
-
-La classe MemoryNeuron è stata introdotta come una sottoclasse di Neuron per rappresentare i neuroni con memoria. Oltre ai pesi e al bias, MemoryNeuron ha anche un attributo aggiuntivo chiamato state, che rappresenta lo stato interno del neurone.
-
-La funzione create_network() nella classe NeuralNetwork è stata modificata per creare neuroni normali (Neuron) o neuroni con memoria (MemoryNeuron) a seconda del valore di use_memory. Inoltre, i neuroni dell'ultimo strato (output layer) sono ora creati come MemoryNeuron se use_memory è impostato su True.
-
-Nella classe MemoryNeuron, il metodo calculate() è stato sovrascritto per aggiungere lo stato interno (self.state) al risultato del calcolo del neurone.
-
-Il metodo backpropagate() nella classe MemoryNeuron è stato esteso per aggiornare anche lo stato interno (self.state) durante il processo di retropropagazione dell'errore.
-
-Nello script main.py, è stata aggiunta l'opzione --use_memory come argomento del programma. Se questa opzione viene specificata durante l'esecuzione dello script, viene creato un oggetto NeuralNetwork che utilizza la memoria.
-
-Ad esempio, per creare una rete neurale con memoria, puoi eseguire lo script come segue:
-
-	'''bash
-	python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --use_memory
-	'''
-In questo modo, verrà creata una rete neurale con memoria, in cui i neuroni utilizzano uno stato interno per memorizzare informazioni.
-
-
-
-
-Certamente! Consideriamo un esempio in cui una rete neurale con memoria potrebbe essere utile. Supponiamo di voler creare un modello per la previsione delle vendite giornaliere di un negozio al dettaglio, prendendo in considerazione vari fattori come la stagionalità, gli eventi speciali, le promozioni passate e così via.
-
-In questo caso, una rete neurale con memoria potrebbe essere adatta per affrontare il problema. La memoria della rete consentirebbe di considerare i dati storici delle vendite e di catturare le relazioni complesse tra i fattori che influenzano le vendite.
-
-Ad esempio, la rete potrebbe prendere in input i dati delle vendite degli ultimi sette giorni, insieme a informazioni aggiuntive come la stagionalità (es. giorno della settimana, mese) e gli eventi speciali (es. festività). La rete avrebbe una serie di strati ricorrenti (come le celle LSTM o GRU) che mantengono la memoria delle informazioni storiche. Questa memoria consentirebbe alla rete di catturare pattern e tendenze a lungo termine nelle vendite.
-
-Durante la fase di addestramento, la rete neurale con memoria apprenderebbe come le diverse variabili influiscono sulle vendite giornaliere e come esse interagiscono tra loro nel corso del tempo. Una volta addestrata, la rete sarebbe in grado di prendere in input i dati correnti (come la stagionalità e gli eventi speciali) insieme alle informazioni storiche e fare previsioni accurate sulle vendite future.
-
-In questo caso, l'utilizzo di una rete neurale con memoria permetterebbe di sfruttare al meglio le informazioni storiche e il contesto temporale per migliorare le previsioni delle vendite rispetto a una rete senza memoria, che potrebbe avere difficoltà a catturare le relazioni complesse e a considerare l'effetto delle informazioni storiche sulle vendite future.
-
-Quindi, in scenari in cui il contesto storico è importante e l'andamento dipende da relazioni complesse nel tempo, l'utilizzo di una rete neurale con memoria può essere molto vantaggioso per ottenere previsioni più accurate.
+Se hai domande o suggerimenti, non esitare a contattarci o a inviare una richiesta di pull. Buon divertimento nell'utilizzare questa semplice rete neurale!
