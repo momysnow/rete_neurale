@@ -75,6 +75,41 @@ Il progetto è concesso in licenza secondo i termini della licenza MIT. Fare rif
 
 
 
+## Documentazione - Salvataggio del Modello
+
+Lo script main.py consente di addestrare una rete neurale e salvarne il modello addestrato per un uso futuro. Di seguito sono riportati i passaggi per salvare il modello.
+
+Utilizzo dello script
+Esegui lo script main.py utilizzando il seguente comando:
+
+css
+Copy code
+python main.py --num_inputs <num_inputs> --num_outputs <num_outputs> --num_hidden <num_hidden> --num_layers <num_layers> --dataset <dataset_file> --epochs <num_epochs> --learning_rate <learning_rate> --save_model --model_file <model_file>
+Dove:
+
+<num_inputs>: Il numero di neuroni di input della rete neurale.
+<num_outputs>: Il numero di neuroni di output della rete neurale.
+<num_hidden>: Il numero di neuroni nel livello nascosto della rete neurale.
+<num_layers>: Il numero di livelli nascosti della rete neurale.
+<dataset_file>: Il percorso al file CSV contenente il dataset per l'addestramento.
+<num_epochs>: Il numero di epoche di addestramento.
+<learning_rate>: Il tasso di apprendimento per l'addestramento.
+<model_file>: Il percorso al file in cui salvare il modello addestrato.
+Salvataggio del Modello
+Per salvare il modello addestrato, utilizzare l'opzione --save_model durante l'esecuzione dello script. Assicurarsi di specificare anche l'argomento --model_file seguito dal percorso desiderato per il file di salvataggio.
+
+Esempio di comando per salvare il modello:
+
+css
+Copy code
+python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --dataset dataset.csv --epochs 100 --learning_rate 0.1 --save_model --model_file model.pkl
+Dopo aver eseguito lo script con successo, il modello addestrato verrà salvato nel file specificato tramite --model_file.
+
+Si prega di notare che il salvataggio del modello richiede l'installazione della libreria pickle.
+
+
+
+
 innanzitutto, è stato aggiunto un nuovo parametro al costruttore della classe NeuralNetwork, chiamato use_memory, che indica se la rete neurale deve utilizzare la memoria o meno. Di default, use_memory è impostato su False.
 
 La classe MemoryNeuron è stata introdotta come una sottoclasse di Neuron per rappresentare i neuroni con memoria. Oltre ai pesi e al bias, MemoryNeuron ha anche un attributo aggiuntivo chiamato state, che rappresenta lo stato interno del neurone.
