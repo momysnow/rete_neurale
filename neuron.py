@@ -27,11 +27,6 @@ class NeuralNetwork:
 
         return neural_network
 
-    def backpropagate(self, error, learning_rate):
-        for layer in reversed(self.neural_network):
-            for neuron in layer:
-                neuron.backpropagate(error, learning_rate)
-
     def calculate(self, inputs):
         outputs = inputs
 
@@ -43,12 +38,6 @@ class NeuralNetwork:
             outputs = new_outputs
 
         self.output = outputs
-
-        # Aggiorna l'attributo last_inputs per tutti i neuroni
-        for layer in self.neural_network:
-            for neuron in layer:
-                neuron.last_inputs = inputs
-
 
     def get_output(self):
         return self.output
@@ -62,8 +51,3 @@ class Neuron:
         weighted_sum = sum(weight * input_val for weight, input_val in zip(self.weights, inputs))
         weighted_sum += self.bias
         return weighted_sum
-
-    def backpropagate(self, error, learning_rate):
-        for i in range(len(self.weights)):
-            self.weights[i] += learning_rate * error * self.last_inputs[i]
-        self.bias += learning_rate * error
