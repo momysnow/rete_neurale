@@ -11,14 +11,21 @@ La rete neurale è composta da uno o più strati di neuroni artificiali. Ogni st
 
 ### Esempio di Architettura della Rete Neurale
 
-Utilizziamo un grafico Mermaid per visualizzare un esempio di architettura di una rete neurale con 2 neuroni di input, 1 neurone di output e 2 neuroni nascosti:
+Utilizziamo un grafico per visualizzare un esempio di architettura di una rete neurale con 2 neuroni di input, 1 neurone di output e 2 neuroni nascosti:
 
 ```mermaid
-graph TD
-I[Input Neurons] --> H1[Hidden Neuron 1]
-I[Input Neurons] --> H2[Hidden Neuron 2]
-H1[Hidden Neuron 1] --> O[Output Neuron]
-H2[Hidden Neuron 2] --> O[Output Neuron]
+graph LR
+I((Input Neurons)) & I2((Input Neurons)) --> H1((Hidden Neuron 1)) & H2((Hidden Neuron 2)) --> O((Output Neuron))
+
+subgraph Input
+I((Input Neurons)) & I2((Input Neurons))
+end
+subgraph Hidden
+H1((Hidden Neuron 1)) & H2((Hidden Neuron 2))
+end
+subgraph Output
+O((Output Neuron))
+end
 ``` 
 
 Nell'esempio sopra, gli input vengono propagati attraverso due neuroni nascosti e infine raggiungono il neurone di output.
@@ -31,7 +38,7 @@ I neuroni artificiali sono le unità di calcolo fondamentali della rete neurale.
 
 Il calcolo di un neurone avviene in due fasi: la somma pesata dei valori di input e l'applicazione della funzione di attivazione. La somma pesata è data dalla seguente formula matematica:
 
-$$Somma Pesata=i=1∑n wi ⋅xi +b$$
+$$Somma Pesata=\sum_{i=1}^n wi ⋅xi +b$$
 
 Dove $w_i$ sono i pesi sinaptici, $x_i$ sono i valori di input e $b$ è il bias.
 
@@ -39,7 +46,7 @@ Dove $w_i$ sono i pesi sinaptici, $x_i$ sono i valori di input e $b$ è il bias.
 
 La funzione di attivazione determina l'output del neurone in base alla somma pesata dei valori di input. Esistono diverse funzioni di attivazione, ma una delle più comuni è la funzione sigmoide:
 
-$$Output={1\over1+e^−Somma Pesata}$$
+$$Output={1\over1+e^{−Somma Pesata}}$$
 
 La funzione sigmoide comprime i valori in un intervallo compreso tra 0 e 1, consentendo alla rete neurale di produrre output probabilistici.
 
@@ -51,7 +58,7 @@ Il processo di addestramento della rete neurale coinvolge due fasi principali: i
 
 Durante l'addestramento, è necessario calcolare l'errore tra l'output previsto dalla rete neurale e il valore di output desiderato. L'errore può essere calcolato utilizzando diverse metriche, ma una delle più comuni è l'errore quadratico medio (MSE):
 
-$$MSE={n\over1} \sum_{i=1}^n (yi−yi)^2$$
+$$MSE={n\over1} \sum_{i=1}^n (yi−\hat{y}i)^2$$
 
 Dove $y_i$ rappresenta il valore di output desiderato e $\hat{y}_i$ rappresenta l'output previsto dalla rete neurale per l'input corrispondente.
 
