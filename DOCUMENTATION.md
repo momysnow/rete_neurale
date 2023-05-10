@@ -31,7 +31,7 @@ I neuroni artificiali sono le unità di calcolo fondamentali della rete neurale.
 
 Il calcolo di un neurone avviene in due fasi: la somma pesata dei valori di input e l'applicazione della funzione di attivazione. La somma pesata è data dalla seguente formula matematica:
 
-$Somma Pesata=i=1∑n​wi​⋅xi​+b$
+$$Somma Pesata=i=1∑n wi ⋅xi +b$$
 
 Dove $w_i$ sono i pesi sinaptici, $x_i$ sono i valori di input e $b$ è il bias.
 
@@ -39,7 +39,7 @@ Dove $w_i$ sono i pesi sinaptici, $x_i$ sono i valori di input e $b$ è il bias.
 
 La funzione di attivazione determina l'output del neurone in base alla somma pesata dei valori di input. Esistono diverse funzioni di attivazione, ma una delle più comuni è la funzione sigmoide:
 
-$Output=1+e−Somma Pesata1​$
+$$Output={1\over1+e^−Somma Pesata}$$
 
 La funzione sigmoide comprime i valori in un intervallo compreso tra 0 e 1, consentendo alla rete neurale di produrre output probabilistici.
 
@@ -51,7 +51,7 @@ Il processo di addestramento della rete neurale coinvolge due fasi principali: i
 
 Durante l'addestramento, è necessario calcolare l'errore tra l'output previsto dalla rete neurale e il valore di output desiderato. L'errore può essere calcolato utilizzando diverse metriche, ma una delle più comuni è l'errore quadratico medio (MSE):
 
-$MSE=n1​i=1∑n​(yi​−y^​i​)2$
+$$MSE={n\over1} \sum_{i=1}^n (yi−yi)^2$$
 
 Dove $y_i$ rappresenta il valore di output desiderato e $\hat{y}_i$ rappresenta l'output previsto dalla rete neurale per l'input corrispondente.
 
@@ -61,7 +61,7 @@ Una volta calcolato l'errore, viene eseguita la propagazione all'indietro per ag
 
 L'aggiornamento dei pesi durante la backpropagation avviene utilizzando il metodo del gradiente discendente. I pesi vengono aggiornati in direzione opposta al gradiente dell'errore rispetto ai pesi. L'aggiornamento dei pesi avviene secondo la seguente formula:
 
-$w_{ij}​=w_{ij}+η⋅δj​⋅xi​$
+$$w_{ij} =w_{ij}+η⋅δj ⋅xi$$
 
 Dove $w_{ij}$ rappresenta il peso tra il neurone di input $i$ e il neurone di output $j$, $\eta$ è il tasso di apprendimento e $\delta_j$ è l'errore del neurone di output $j$.
 
