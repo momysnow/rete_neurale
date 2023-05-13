@@ -1,5 +1,6 @@
 import random
 
+
 class NeuralNetwork:
     def __init__(self, num_inputs, num_outputs, num_hidden, num_layers, use_memory=False):
         self.num_inputs = num_inputs
@@ -55,6 +56,7 @@ class NeuralNetwork:
     def get_output(self):
         return self.output
 
+
 class Neuron:
     def __init__(self, num_inputs):
         self.weights = [random.uniform(-1, 1) for _ in range(num_inputs)]  # Utilizza random.uniform per pesi in float
@@ -70,6 +72,7 @@ class Neuron:
             self.weights[i] += learning_rate * error * self.last_inputs[i]
         self.bias += learning_rate * error
 
+
 class MemoryNeuron(Neuron):
     def __init__(self, num_inputs):
         super().__init__(num_inputs)
@@ -83,3 +86,21 @@ class MemoryNeuron(Neuron):
     def backpropagate(self, error, learning_rate):
         super().backpropagate(error, learning_rate)
         self.state = error
+
+
+class MinMaxScaler:
+    def __init__(self):
+        self.min_values = None
+        self.max_values = None
+
+    def fit_transform(self, data):
+        self.min_values = [min(column) for column in zip(*data)]
+        self.max_values = [max(column) for column in zip(*data)]
+
+        normalized_data = []
+        for row in data:
+            normalized_row = [(value - min_val) / (max_val - min_val) for value, min_val, max_val in
+                              zip(row, self.min_values, self.max_values)]
+            normalized_data.append(normalized_row)
+
+        return normalized_data
