@@ -1,62 +1,87 @@
+
 # Neural Network Trainer
 
-Questo progetto è un trainer di reti neurali che utilizza immagini come input per l'addestramento. Le immagini vengono elaborate e convertite in un formato adatto per l'addestramento della rete neurale.
+This project is a neural network trainer that performs image processing and classification. It trains a neural network on a given dataset of images and saves the trained model for future use.
 
-## Requisiti
+## Installation
 
-- Python 3.x
-- OpenCV (cv2)
-- NumPy
+To use this project, follow these steps:
 
-## Installazione
+1. Clone the repository:
 
-1. Clonare il repository:
+   ```shell
+   git clone https://github.com/momysnow/rete_neurale.git
+   ``` 
 
-```bash
-git clone https://github.com/tuout03/neural-network-trainer.git
+2.  Install the required dependencies. You can use `pip` to install them:
+    
+    ```shell
+    pip install -r requirements.txt
+    ``` 
+    
+
+## Usage
+
+The trainer can be executed from the command line using the `trainer.py` script. It accepts various command-line arguments to configure the neural network and training process.
+
+```shell
+python trainer.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --use_memory --image_paths path/to/images --image_size 64 --kernel_size 3 --pool_size 2 --epochs 100 --learning_rate 0.1 --save_model --model_file model.pkl
 ```
 
-Accedere alla directory del progetto:
-```bash
-cd neural-network-trainer
-```
-Installare le dipendenze:
-```bash
-pip install -r requirements.txt
-```
-Utilizzo
-Il programma viene eseguito dal file main.py. Ecco un esempio di comando per l'esecuzione:
+The available command-line arguments are:
 
-```bash
-python main.py --num_inputs 2 --num_outputs 1 --num_hidden 2 --num_layers 1 --use_memory --image_paths path1.jpg path2.jpg --image_size 64 --kernel_size 3 --pool_size 2 --epochs 100 --learning_rate 0.1 --save_model --model_file model.pkl
-```
-### Argomenti
+-   `--num_inputs`: Number of input neurons.
+-   `--num_outputs`: Number of output neurons.
+-   `--num_hidden`: Number of neurons in the hidden layer.
+-   `--num_layers`: Number of hidden layers.
+-   `--use_memory`: Use neurons with memory.
+-   `--image_paths`: Paths to the input images.
+-   `--image_size`: Dimensione delle immagini di input.
+-   `--kernel_size`: Size of the kernel.
+-   `--pool_size`: Size of the pooling.
+-   `--epochs`: Number of training epochs.
+-   `--learning_rate`: Learning rate for training.
+-   `--save_model`: Save the trained model.
+-   `--model_file`: File path to save the trained model.
 
-**--num_inputs**: Numero di neuroni di input della rete neurale (valore predefinito: 2)
+## Modules
 
-**--num_outputs**: Numero di neuroni di output della rete neurale (valore predefinito: 1)
+The project consists of the following modules:
 
-**--num_hidden**: Numero di neuroni nel layer nascosto della rete neurale (valore predefinito: 2)
+-   `trainer.py`: The main script that controls the training process.
+-   `convert_img.py`: Module for image conversion and processing.
+-   `neuron.py`: Module containing the neural network and neuron classes.
 
-**--num_layers**: Numero di layer nascosti della rete neurale (valore predefinito: 1)
+For detailed information about each module and its functionalities, refer to their respective source code files.
 
-**--use_memory**: Utilizza neuroni con memoria (opzione booleana)
+## Overview
 
-**--image_paths**: Percorsi delle immagini di input separati da spazi
+Il progetto "Neural Network Trainer" è un'applicazione che utilizza reti neurali per l'elaborazione e la classificazione delle immagini. L'obiettivo principale è quello di allenare una rete neurale su un dataset di immagini fornito dall'utente e salvare il modello allenato per utilizzi futuri.
 
-**--image_size**: Dimensione delle immagini di input (valore predefinito: 64)
+## Funzionamento
 
-**--kernel_size**: Dimensione del kernel per il filtro (valore predefinito: 3)
+Il funzionamento del progetto può essere suddiviso in diverse fasi:
 
-**--pool_size**: Dimensione della finestra di pooling (valore predefinito: 2)
+1.  **Caricamento delle immagini**: L'applicazione carica le immagini di input specificate dall'utente utilizzando il modulo `convert_img.py`. Le immagini vengono ridimensionate a una dimensione specificata e convertite in scala di grigi per semplificare l'elaborazione.
+    
+2.  **Elaborazione delle immagini**: Dopo il caricamento, le immagini vengono sottoposte a un processo di elaborazione utilizzando tecniche come il filtraggio del kernel e il pooling. Il modulo `convert_img.py` fornisce le funzioni per applicare il filtro del kernel e il pooling alle immagini caricate.
+    
+3.  **Creazione della rete neurale**: Utilizzando il modulo `neuron.py`, viene creata una rete neurale configurata in base ai parametri specificati dall'utente. La rete neurale può consistere di uno o più strati nascosti, ognuno contenente un numero specificato di neuroni. È anche possibile utilizzare neuroni con memoria.
+    
+4.  **Allenamento della rete neurale**: La rete neurale viene allenata utilizzando il dataset di immagini elaborate. Durante il processo di allenamento, la rete neurale cerca di adattare i pesi dei collegamenti tra i neuroni per minimizzare l'errore tra l'output previsto e il valore di target corretto. L'algoritmo di retropropagazione dell'errore viene utilizzato per aggiornare i pesi e il bias dei neuroni.
+    
+5.  **Salvataggio del modello**: Alla fine dell'allenamento, è possibile salvare il modello allenato utilizzando il modulo `neuron.py`. Il modello viene serializzato utilizzando il modulo `pickle` e salvato in un file specificato dall'utente per un utilizzo futuro.
+    
 
-**--epochs**: Numero di epoche di addestramento (valore predefinito: 100)
+## Estensioni e Contributi
 
-**--learning_rate**: Tasso di apprendimento per l'addestramento (valore predefinito: 0.1)
+Il progetto può essere esteso e personalizzato in vari modi. È possibile esplorare diverse architetture di reti neurali, aggiungere nuove funzionalità di elaborazione delle immagini o implementare algoritmi di ottimizzazione diversi per migliorare le prestazioni del modello. I contributi a questo progetto sono i benvenuti! Se hai idee o suggerimenti, non esitare ad aprire una issue o inviare una pull request.
 
-**--save_model**: Salva il modello addestrato (opzione booleana)
+Speriamo che questa breve spiegazione del funzionamento del progetto sia utile per comprendere come utilizzare e contribuire a questa applicazione basata su reti neurali
 
-**--model_file**: Percorso del file per salvare il modello addestrato (valore predefinito: model.pkl)
+## License
 
-## Contributi
-Sono benvenuti i contributi a questo progetto. Se hai suggerimenti, correzioni o miglioramenti, puoi aprire una Issue o inviare una Pull Request.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/momysnow/rete_neurale/blob/image-classification/LICENSE) file for more information.
+
+
+Assicurati di personalizzare il codice Markdown con le informazioni specifiche del tuo progetto, come il nome utente nel link del repository e la descrizione delle funzionalità e dei moduli.
