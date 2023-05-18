@@ -16,7 +16,7 @@ In sintesi, il mio progetto su GitHub utilizza una rete neurale per eseguire cal
 
 ## Documentazione espansa
 
-Ora che hai familiarità con i concetti di base, possiamo approfondire ulteriormente il funzionamento della rete neurale nel tuo progetto su GitHub.
+Ora che hai familiarità con i concetti di base, possiamo approfondire ulteriormente il funzionamento della rete neurale.
 
 La classe "NeuralNetwork" rappresenta la struttura della rete neurale. Quando viene inizializzata, vengono specificati i seguenti parametri:
 
@@ -34,10 +34,10 @@ La classe "Neuron" rappresenta un singolo neurone all'interno della rete neurale
 - **'bias'**: un valore che indica la preferenza o l'inclinazione del neurone verso l'attivazione o l'inattivazione.
 Il metodo **'calculate()'** del neurone prende in input un array di valori e calcola l'output del neurone. Questo viene fatto calcolando la somma pesata dei valori di input moltiplicati per i rispettivi pesi. Il risultato viene poi sommato al bias del neurone. Il valore ottenuto rappresenta l'attivazione del neurone e viene restituito come output.
 
-In conclusione, la tua rete neurale nel progetto su GitHub utilizza una struttura di rete configurabile con un numero specificato di neuroni di input, neuroni di output, neuroni nascosti e livelli nascosti. Ogni neurone calcola il suo output basato sui pesi dei suoi input e sul bias associato. L'output della rete neurale viene calcolato iterando attraverso i livelli e calcolando l'output dei neuroni in ciascun livello. Questo processo di calcolo degli output della rete neurale ci permette di ottenere una risposta finale basata sugli input forniti.
+In conclusione, la tua rete neurale utilizza una struttura di rete configurabile con un numero specificato di neuroni di input, neuroni di output, neuroni nascosti e livelli nascosti. Ogni neurone calcola il suo output basato sui pesi dei suoi input e sul bias associato. L'output della rete neurale viene calcolato iterando attraverso i livelli e calcolando l'output dei neuroni in ciascun livello. Questo processo di calcolo degli output della rete neurale ci permette di ottenere una risposta finale basata sugli input forniti.
 
 Le reti neurali sono ampiamente utilizzate per una varietà di compiti, come il riconoscimento di immagini, la previsione del tempo, l'elaborazione del linguaggio naturale e molto altro ancora. Possono imparare dai dati attraverso un processo chiamato "addestramento", dove i pesi dei neuroni vengono regolati gradualmente per adattarsi ai dati di input e produrre risultati più accurati.
 
 Nel tuo progetto, puoi sperimentare diversi parametri come il numero di neuroni di input, il numero di neuroni di output, il numero di neuroni nascosti e il numero di livelli nascosti per adattare la rete neurale alle specifiche esigenze del tuo problema. Puoi anche esplorare tecniche di addestramento come l'algoritmo di retropropagazione per migliorare le prestazioni della rete neurale.
 
-Spero che questa documentazione dettagliata ti abbia dato una migliore comprensione di come la rete neurale nel tuo progetto su GitHub funzioni e come può essere personalizzata per adattarsi ai tuoi scopi. Se hai ulteriori domande, non esitare a chiedere!
+Spero che questa documentazione dettagliata ti abbia dato una migliore comprensione di come la rete neurale funzioni e come può essere personalizzata per adattarsi ai tuoi scopi. Se hai ulteriori domande, non esitare a chiedere!
